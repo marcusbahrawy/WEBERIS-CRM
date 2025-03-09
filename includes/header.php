@@ -85,24 +85,6 @@ $currentDir = basename(dirname($_SERVER['PHP_SELF']));
                         </a>
                     </li>
                     <?php endif; ?>
-                    
-                    <?php if (checkPermission('view_user')): ?>
-                    <li class="<?php echo $currentDir === 'users' ? 'active' : ''; ?>">
-                        <a href="<?php echo SITE_URL; ?>/modules/users/index.php">
-                            <span class="material-icons">people</span>
-                            <span>Users</span>
-                        </a>
-                    </li>
-                    <?php endif; ?>
-                    
-                    <?php if (checkPermission('view_role')): ?>
-                    <li class="<?php echo $currentDir === 'roles' ? 'active' : ''; ?>">
-                        <a href="<?php echo SITE_URL; ?>/modules/roles/index.php">
-                            <span class="material-icons">admin_panel_settings</span>
-                            <span>Roles</span>
-                        </a>
-                    </li>
-                    <?php endif; ?>
                 </ul>
             </nav>
         </aside>
@@ -134,12 +116,8 @@ $currentDir = basename(dirname($_SERVER['PHP_SELF']));
         <span class="material-icons">person</span>
         <span>Profile</span>
     </a>
-    <a href="<?php echo SITE_URL; ?>/settings.php">
-        <span class="material-icons">settings</span>
-        <span>Settings</span>
-    </a>
     
-    <!-- Legg til denne linjen for admin-brukere: -->
+    <!-- System Settings link for admin users -->
     <?php if ($_SESSION['role_name'] === 'admin'): ?>
     <a href="<?php echo SITE_URL; ?>/modules/settings/index.php">
         <span class="material-icons">tune</span>
