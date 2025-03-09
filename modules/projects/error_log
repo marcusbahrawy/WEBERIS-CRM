@@ -12,3 +12,13 @@ Stack trace:
 [07-Mar-2025 09:31:13 UTC] PHP Warning:  Undefined variable $offerAmount in /home4/scrimbailleris/public_html/modules/projects/edit.php on line 178
 [07-Mar-2025 09:33:06 UTC] PHP Warning:  Undefined variable $offerAmount in /home4/scrimbailleris/public_html/modules/projects/edit.php on line 178
 [07-Mar-2025 09:33:49 UTC] PHP Warning:  Undefined variable $offerAmount in /home4/scrimbailleris/public_html/modules/projects/edit.php on line 178
+[09-Mar-2025 15:39:15 UTC] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home4/scrimbailleris/public_html/modules/projects/view.php:352
+Stack trace:
+#0 /home4/scrimbailleris/public_html/modules/projects/view.php(352): mysqli->close()
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/modules/projects/view.php on line 352
+[09-Mar-2025 15:39:18 UTC] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home4/scrimbailleris/public_html/modules/projects/index.php:379
+Stack trace:
+#0 /home4/scrimbailleris/public_html/modules/projects/index.php(379): mysqli->close()
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/modules/projects/index.php on line 379

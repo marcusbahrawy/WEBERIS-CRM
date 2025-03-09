@@ -10,84 +10,212 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Handle data tables
     setupDataTables();
+    
+    // Initialize notifications
+    initializeNotifications();
 });
 
 /**
  * Initialize UI components and interactions
  */
 function initializeUI() {
-    // User dropdown menu toggle
     // Mobile menu toggle
-const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-if (mobileMenuToggle) {
-    mobileMenuToggle.addEventListener('click', function() {
-        document.querySelector('.sidebar').classList.toggle('show');
-    });
-}
-
-// Sidebar toggle functionality
-const sidebarToggle = document.createElement('button');
-sidebarToggle.className = 'sidebar-toggle';
-sidebarToggle.innerHTML = '<span class="material-icons">chevron_left</span>';
-document.querySelector('.sidebar-header').appendChild(sidebarToggle);
-
-sidebarToggle.addEventListener('click', function() {
-    document.querySelector('.sidebar').classList.toggle('sidebar-collapsed');
-    document.querySelector('.main-content').classList.toggle('expanded');
-    
-    if (document.querySelector('.sidebar').classList.contains('sidebar-collapsed')) {
-        this.innerHTML = '<span class="material-icons">chevron_right</span>';
-    } else {
-        this.innerHTML = '<span class="material-icons">chevron_left</span>';
-    }
-});
-
-// Enhanced alerts
-const alerts = document.querySelectorAll('.alert');
-alerts.forEach(alert => {
-    // Add icon based on alert type
-    const alertType = Array.from(alert.classList)
-        .find(cls => cls.startsWith('alert-'))
-        ?.replace('alert-', '');
-        
-    if (alertType) {
-        let iconName = 'info';
-        if (alertType === 'success') iconName = 'check_circle';
-        if (alertType === 'warning') iconName = 'warning';
-        if (alertType === 'danger') iconName = 'error';
-        
-        const icon = document.createElement('span');
-        icon.className = 'material-icons alert-icon';
-        icon.textContent = iconName;
-        
-        const content = document.createElement('div');
-        content.className = 'alert-content';
-        
-        // Move all child nodes to the content div
-        while (alert.firstChild) {
-            content.appendChild(alert.firstChild);
-        }
-        
-        alert.appendChild(icon);
-        alert.appendChild(content);
-    }
-});
-    
-    // Responsive sidebar toggle
-    const sidebarToggle = document.querySelector('.sidebar-toggle');
-    const sidebar = document.querySelector('.sidebar');
-    const mainContent = document.querySelector('.main-content');
-    
-    if (sidebarToggle && sidebar && mainContent) {
-        sidebarToggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            sidebar.classList.toggle('collapsed');
-            mainContent.classList.toggle('expanded');
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('show');
         });
     }
+
+    // Sidebar toggle functionality
+    const sidebarToggle = document.createElement('button');
+    sidebarToggle.className = 'sidebar-toggle';
+    sidebarToggle.innerHTML = '<span class="material-icons">chevron_left</span>';
+    document.querySelector('.sidebar-header').appendChild(sidebarToggle);
+
+    sidebarToggle.addEventListener('click', function() {
+        document.querySelector('.sidebar').classList.toggle('sidebar-collapsed');
+        document.querySelector('.main-content').classList.toggle('expanded');
+        
+        if (document.querySelector('.sidebar').classList.contains('sidebar-collapsed')) {
+            this.innerHTML = '<span class="material-icons">chevron_right</span>';
+        } else {
+            this.innerHTML = '<span class="material-icons">chevron_left</span>';
+        }
+    });
+
+    // Enhanced alerts
+    const alerts = document.querySelectorAll('.alert');
+    alerts.forEach(alert => {
+        // Add icon based on alert type
+        const alertType = Array.from(alert.classList)
+            .find(cls => cls.startsWith('alert-'))
+            ?.replace('alert-', '');
+            
+        if (alertType) {
+            let iconName = 'info';
+            if (alertType === 'success') iconName = 'check_circle';
+            if (alertType === 'warning') iconName = 'warning';
+            if (alertType === 'danger') iconName = 'error';
+            
+            const icon = document.createElement('span');
+            icon.className = 'material-icons alert-icon';
+            icon.textContent = iconName;
+            
+            const content = document.createElement('div');
+            content.className = 'alert-content';
+            
+            // Move all child nodes to the content div
+            while (alert.firstChild) {
+                content.appendChild(alert.firstChild);
+            }
+            
+            alert.appendChild(icon);
+            alert.appendChild(content);
+        }
+    });
     
     // Setup alert dismissal
     setupAlertDismissal();
+}
+
+/**
+ * Initialize notifications dropdown and polling
+ */
+function initializeNotifications() {
+    const notificationsToggle = document.getElementById('notificationsToggle');
+    const notificationsDropdown = document.getElementById('notificationsDropdown');
+    const notificationsContent = document.getElementById('notificationsContent');
+    
+    if (!notificationsToggle || !notificationsDropdown || !notificationsContent) {
+        return;
+    }
+    
+    // Toggle dropdown
+    notificationsToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        notificationsDropdown.classList.toggle('show');
+        
+        if (notificationsDropdown.classList.contains('show')) {
+            loadNotifications();
+        }
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!notificationsDropdown.contains(e.target) && !notificationsToggle.contains(e.target)) {
+            notificationsDropdown.classList.remove('show');
+        }
+    });
+    
+    // Prevent dropdown from closing when clicking inside it
+    notificationsDropdown.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+    
+    // Load notifications function
+    function loadNotifications() {
+        notificationsContent.innerHTML = '<div class="loading-spinner"><div class="spinner"></div></div>';
+        
+        fetch(window.location.origin + '/modules/notifications/get_ajax.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    renderNotifications(data);
+                    updateNotificationCount(data.unread_count);
+                } else {
+                    notificationsContent.innerHTML = '<div class="notification-error">Failed to load notifications</div>';
+                }
+            })
+            .catch(error => {
+                notificationsContent.innerHTML = '<div class="notification-error">Error loading notifications</div>';
+                console.error('Notification error:', error);
+            });
+    }
+    
+    // Render notifications in dropdown
+    function renderNotifications(data) {
+        if (data.notifications.length === 0) {
+            notificationsContent.innerHTML = '<div class="no-notifications">No notifications yet</div>';
+            return;
+        }
+        
+        let html = '';
+        
+        data.notifications.forEach(notification => {
+            // Choose icon based on notification type
+            let icon = 'notifications';
+            switch (notification.type) {
+                case 'task_assigned':
+                    icon = 'assignment_ind';
+                    break;
+                case 'task_completed':
+                    icon = 'task_alt';
+                    break;
+                case 'task_comment':
+                    icon = 'comment';
+                    break;
+                case 'task_update':
+                    icon = 'update';
+                    break;
+                case 'task_deleted':
+                    icon = 'delete';
+                    break;
+            }
+            
+            html += `
+                <div class="dropdown-notification ${notification.is_read == 0 ? 'unread' : ''}">
+                    <div class="notification-icon">
+                        <span class="material-icons">${icon}</span>
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-title">${notification.title}</div>
+                        <div class="notification-message">${notification.message}</div>
+                        <div class="notification-time">${notification.time_ago}</div>
+                    </div>
+                    ${notification.link ? `<a href="${window.location.origin}${notification.link}" class="notification-link">
+                        <span class="material-icons">arrow_forward</span>
+                    </a>` : ''}
+                </div>
+            `;
+        });
+        
+        notificationsContent.innerHTML = html;
+    }
+    
+    // Update notification badge count
+    function updateNotificationCount(count) {
+        const badge = notificationsToggle.querySelector('.notifications-badge');
+        if (count > 0) {
+            if (badge) {
+                badge.textContent = count;
+            } else {
+                const newBadge = document.createElement('span');
+                newBadge.className = 'notifications-badge';
+                newBadge.textContent = count;
+                notificationsToggle.appendChild(newBadge);
+            }
+        } else if (badge) {
+            badge.remove();
+        }
+    }
+    
+    // Poll for new notifications every 30 seconds
+    setInterval(function() {
+        if (!notificationsDropdown.classList.contains('show')) {
+            // Only update the count if dropdown is closed
+            fetch(window.location.origin + '/modules/notifications/get_ajax.php?count_only=1')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        updateNotificationCount(data.unread_count);
+                    }
+                })
+                .catch(error => {
+                    console.error('Notification count error:', error);
+                });
+        }
+    }, 30000);
 }
 
 /**
@@ -360,4 +488,60 @@ function formatDate(dateString, format = 'medium') {
                 day: 'numeric'
             });
     }
+}
+
+/**
+ * Format time value
+ * @param {string} timeString - Time string to format
+ * @param {boolean} includeSeconds - Whether to include seconds
+ * @returns {string} - Formatted time
+ */
+function formatTime(timeString, includeSeconds = false) {
+    const time = new Date(timeString);
+    
+    if (isNaN(time)) {
+        return timeString;
+    }
+    
+    const options = {
+        hour: '2-digit',
+        minute: '2-digit'
+    };
+    
+    if (includeSeconds) {
+        options.second = '2-digit';
+    }
+    
+    return time.toLocaleTimeString(undefined, options);
+}
+
+/**
+ * Format date and time value
+ * @param {string} dateTimeString - Date/time string to format
+ * @param {boolean} includeSeconds - Whether to include seconds
+ * @returns {string} - Formatted date and time
+ */
+function formatDateTime(dateTimeString, includeSeconds = false) {
+    const dateTime = new Date(dateTimeString);
+    
+    if (isNaN(dateTime)) {
+        return dateTimeString;
+    }
+    
+    const dateOptions = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+    };
+    
+    const timeOptions = {
+        hour: '2-digit',
+        minute: '2-digit'
+    };
+    
+    if (includeSeconds) {
+        timeOptions.second = '2-digit';
+    }
+    
+    return `${dateTime.toLocaleDateString(undefined, dateOptions)} ${dateTime.toLocaleTimeString(undefined, timeOptions)}`;
 }

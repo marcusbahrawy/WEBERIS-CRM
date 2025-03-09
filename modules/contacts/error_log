@@ -1,0 +1,5 @@
+[09-Mar-2025 15:53:05 UTC] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home4/scrimbailleris/public_html/modules/contacts/index.php:278
+Stack trace:
+#0 /home4/scrimbailleris/public_html/modules/contacts/index.php(278): mysqli->close()
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/modules/contacts/index.php on line 278

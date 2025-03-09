@@ -18,3 +18,8 @@ Stack trace:
 #0 /home4/scrimbailleris/public_html/modules/service_agreements/index.php(41): mysqli->query('SELECT name, la...')
 #1 {main}
   thrown in /home4/scrimbailleris/public_html/modules/service_agreements/index.php on line 41
+[09-Mar-2025 15:53:06 UTC] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home4/scrimbailleris/public_html/modules/service_agreements/index.php:381
+Stack trace:
+#0 /home4/scrimbailleris/public_html/modules/service_agreements/index.php(381): mysqli->close()
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/modules/service_agreements/index.php on line 381

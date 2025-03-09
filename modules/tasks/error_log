@@ -1,0 +1,40 @@
+[09-Mar-2025 15:53:07 UTC] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home4/scrimbailleris/public_html/modules/tasks/index.php:722
+Stack trace:
+#0 /home4/scrimbailleris/public_html/modules/tasks/index.php(722): mysqli->close()
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/modules/tasks/index.php on line 722
+[09-Mar-2025 15:53:19 UTC] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home4/scrimbailleris/public_html/modules/tasks/index.php:722
+Stack trace:
+#0 /home4/scrimbailleris/public_html/modules/tasks/index.php(722): mysqli->close()
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/modules/tasks/index.php on line 722
+[09-Mar-2025 15:53:20 UTC] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home4/scrimbailleris/public_html/modules/tasks/index.php:722
+Stack trace:
+#0 /home4/scrimbailleris/public_html/modules/tasks/index.php(722): mysqli->close()
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/modules/tasks/index.php on line 722
+[09-Mar-2025 15:53:23 UTC] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home4/scrimbailleris/public_html/modules/tasks/index.php:722
+Stack trace:
+#0 /home4/scrimbailleris/public_html/modules/tasks/index.php(722): mysqli->close()
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/modules/tasks/index.php on line 722
+[09-Mar-2025 15:53:24 UTC] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home4/scrimbailleris/public_html/modules/tasks/add.php:349
+Stack trace:
+#0 /home4/scrimbailleris/public_html/modules/tasks/add.php(349): mysqli->close()
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/modules/tasks/add.php on line 349
+[09-Mar-2025 15:53:28 UTC] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home4/scrimbailleris/public_html/modules/tasks/index.php:722
+Stack trace:
+#0 /home4/scrimbailleris/public_html/modules/tasks/index.php(722): mysqli->close()
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/modules/tasks/index.php on line 722
+[09-Mar-2025 15:54:21 UTC] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home4/scrimbailleris/public_html/modules/tasks/index.php:722
+Stack trace:
+#0 /home4/scrimbailleris/public_html/modules/tasks/index.php(722): mysqli->close()
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/modules/tasks/index.php on line 722
+[09-Mar-2025 15:57:37 UTC] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home4/scrimbailleris/public_html/modules/tasks/index.php:722
+Stack trace:
+#0 /home4/scrimbailleris/public_html/modules/tasks/index.php(722): mysqli->close()
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/modules/tasks/index.php on line 722
