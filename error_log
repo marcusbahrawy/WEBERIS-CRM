@@ -1,0 +1,97 @@
+[06-Mar-2025 19:07:47 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'scrimbailleris_illeris'@'localhost' to database 'weberis_crm' in /home4/scrimbailleris/public_html/index.php:18
+Stack trace:
+#0 /home4/scrimbailleris/public_html/index.php(18): mysqli->query('CREATE DATABASE...')
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/index.php on line 18
+[06-Mar-2025 19:07:57 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'scrimbailleris_illeris'@'localhost' to database 'weberis_crm' in /home4/scrimbailleris/public_html/index.php:18
+Stack trace:
+#0 /home4/scrimbailleris/public_html/index.php(18): mysqli->query('CREATE DATABASE...')
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/index.php on line 18
+[06-Mar-2025 19:08:09 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for scrimbailleris_illeris failed: Name or service not known in /home4/scrimbailleris/public_html/index.php:6
+Stack trace:
+#0 /home4/scrimbailleris/public_html/index.php(6): mysqli->__construct('scrimbailleris_...', 'scrimbailleris_...', '*3lk0pHxAU5@')
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/index.php on line 6
+[06-Mar-2025 19:08:10 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for scrimbailleris_illeris failed: Name or service not known in /home4/scrimbailleris/public_html/index.php:6
+Stack trace:
+#0 /home4/scrimbailleris/public_html/index.php(6): mysqli->__construct('scrimbailleris_...', 'scrimbailleris_...', '*3lk0pHxAU5@')
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/index.php on line 6
+[06-Mar-2025 19:08:10 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for scrimbailleris_illeris failed: Name or service not known in /home4/scrimbailleris/public_html/index.php:6
+Stack trace:
+#0 /home4/scrimbailleris/public_html/index.php(6): mysqli->__construct('scrimbailleris_...', 'scrimbailleris_...', '*3lk0pHxAU5@')
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/index.php on line 6
+[06-Mar-2025 19:09:19 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'scrimbailleris_illeris.users' doesn't exist in /home4/scrimbailleris/public_html/login.php:28
+Stack trace:
+#0 /home4/scrimbailleris/public_html/login.php(28): mysqli->prepare('SELECT u.id, u....')
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/login.php on line 28
+[06-Mar-2025 19:09:28 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'scrimbailleris_illeris.users' doesn't exist in /home4/scrimbailleris/public_html/login.php:28
+Stack trace:
+#0 /home4/scrimbailleris/public_html/login.php(28): mysqli->prepare('SELECT u.id, u....')
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/login.php on line 28
+[06-Mar-2025 19:10:17 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'scrimbailleris_illeris.users' doesn't exist in /home4/scrimbailleris/public_html/login.php:28
+Stack trace:
+#0 /home4/scrimbailleris/public_html/login.php(28): mysqli->prepare('SELECT u.id, u....')
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/login.php on line 28
+[06-Mar-2025 19:10:26 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'scrimbailleris_illeris.users' doesn't exist in /home4/scrimbailleris/public_html/login.php:28
+Stack trace:
+#0 /home4/scrimbailleris/public_html/login.php(28): mysqli->prepare('SELECT u.id, u....')
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/login.php on line 28
+[06-Mar-2025 19:11:47 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'scrimbailleris_illeris.users' doesn't exist in /home4/scrimbailleris/public_html/login.php:28
+Stack trace:
+#0 /home4/scrimbailleris/public_html/login.php(28): mysqli->prepare('SELECT u.id, u....')
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/login.php on line 28
+[06-Mar-2025 19:17:18 UTC] PHP Fatal error:  Uncaught Error: mysqli_stmt::bind_param(): Argument #2 cannot be passed by reference in /home4/scrimbailleris/public_html/config.php:292
+Stack trace:
+#0 /home4/scrimbailleris/public_html/index.php(7): setupDatabase()
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/config.php on line 292
+[06-Mar-2025 19:17:40 UTC] PHP Fatal error:  Uncaught Error: mysqli_stmt::bind_param(): Argument #2 cannot be passed by reference in /home4/scrimbailleris/public_html/config.php:292
+Stack trace:
+#0 /home4/scrimbailleris/public_html/index.php(7): setupDatabase()
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/config.php on line 292
+[06-Mar-2025 19:17:43 UTC] PHP Fatal error:  Uncaught Error: mysqli_stmt::bind_param(): Argument #2 cannot be passed by reference in /home4/scrimbailleris/public_html/config.php:292
+Stack trace:
+#0 /home4/scrimbailleris/public_html/index.php(7): setupDatabase()
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/config.php on line 292
+[06-Mar-2025 19:17:47 UTC] PHP Fatal error:  Uncaught Error: mysqli_stmt::bind_param(): Argument #2 cannot be passed by reference in /home4/scrimbailleris/public_html/config.php:292
+Stack trace:
+#0 /home4/scrimbailleris/public_html/index.php(7): setupDatabase()
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/config.php on line 292
+[06-Mar-2025 19:18:35 UTC] PHP Fatal error:  Uncaught Error: mysqli_stmt::bind_param(): Argument #2 cannot be passed by reference in /home4/scrimbailleris/public_html/config.php:292
+Stack trace:
+#0 /home4/scrimbailleris/public_html/setup.php(11): setupDatabase()
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/config.php on line 292
+[06-Mar-2025 19:18:47 UTC] PHP Fatal error:  Uncaught Error: mysqli_stmt::bind_param(): Argument #2 cannot be passed by reference in /home4/scrimbailleris/public_html/config.php:292
+Stack trace:
+#0 /home4/scrimbailleris/public_html/setup.php(11): setupDatabase()
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/config.php on line 292
+[06-Mar-2025 19:18:49 UTC] PHP Fatal error:  Uncaught Error: mysqli_stmt::bind_param(): Argument #2 cannot be passed by reference in /home4/scrimbailleris/public_html/config.php:292
+Stack trace:
+#0 /home4/scrimbailleris/public_html/setup.php(11): setupDatabase()
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/config.php on line 292
+[06-Mar-2025 19:19:35 UTC] PHP Fatal error:  Uncaught Error: mysqli_stmt::bind_param(): Argument #2 cannot be passed by reference in /home4/scrimbailleris/public_html/config.php:292
+Stack trace:
+#0 /home4/scrimbailleris/public_html/setup.php(11): setupDatabase()
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/config.php on line 292
+[07-Mar-2025 08:26:06 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function connectDB() in /home4/scrimbailleris/public_html/dashboard.php:11
+Stack trace:
+#0 {main}
+  thrown in /home4/scrimbailleris/public_html/dashboard.php on line 11
+[07-Mar-2025 21:43:24 UTC] PHP Warning:  Undefined array key "email" in /home4/scrimbailleris/public_html/login.php on line 19
+[07-Mar-2025 21:43:24 UTC] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home4/scrimbailleris/public_html/config.php on line 73
+[07-Mar-2025 21:43:25 UTC] PHP Warning:  Undefined array key "password" in /home4/scrimbailleris/public_html/login.php on line 20
