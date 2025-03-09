@@ -117,6 +117,14 @@ if (isLoggedIn()) {
                         </a>
                     </li>
                     <?php endif; ?>
+                    <?php if (checkPermission('view_time')): ?>
+                    <li class="<?php echo $currentDir === 'time' ? 'active' : ''; ?>">
+                        <a href="<?php echo SITE_URL; ?>/modules/time/index.php">
+                            <span class="material-icons">timer</span>
+                            <span>Time Tracking</span>
+                        </a>
+                    </li>
+                    <?php endif; ?>
                 </ul>
             </nav>
         </aside>

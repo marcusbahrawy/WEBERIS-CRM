@@ -1,0 +1,2 @@
+[09-Mar-2025 16:13:58 UTC] PHP Fatal error:  Cannot redeclare formatTime() (previously declared in /home4/scrimbailleris/public_html/modules/time/index.php:251) in /home4/scrimbailleris/public_html/config.php on line 253
+[09-Mar-2025 16:14:13 UTC] PHP Fatal error:  Cannot redeclare formatTime() (previously declared in /home4/scrimbailleris/public_html/modules/time/index.php:251) in /home4/scrimbailleris/public_html/config.php on line 253

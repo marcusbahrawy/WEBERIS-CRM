@@ -23,3 +23,8 @@ Stack trace:
 #0 /home4/scrimbailleris/public_html/modules/service_agreements/index.php(381): mysqli->close()
 #1 {main}
   thrown in /home4/scrimbailleris/public_html/modules/service_agreements/index.php on line 381
+[09-Mar-2025 16:06:07 UTC] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home4/scrimbailleris/public_html/modules/service_agreements/index.php:381
+Stack trace:
+#0 /home4/scrimbailleris/public_html/modules/service_agreements/index.php(381): mysqli->close()
+#1 {main}
+  thrown in /home4/scrimbailleris/public_html/modules/service_agreements/index.php on line 381
