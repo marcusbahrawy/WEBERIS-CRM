@@ -447,6 +447,26 @@ function setupDatabase() {
         FOREIGN KEY (created_by) REFERENCES users(id)
     )");
     
+    // Agreement Types table
+    $conn->query("CREATE TABLE IF NOT EXISTS agreement_types (
+        id INT(11) AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(50) NOT NULL UNIQUE,
+        label VARCHAR(100) NOT NULL,
+        description TEXT,
+        is_active TINYINT(1) DEFAULT 1,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    )");
+
+    // Insert default agreement types
+    $conn->query("INSERT IGNORE INTO agreement_types (name, label, description) VALUES 
+        ('standard', 'Standard', 'Standard service agreement'),
+        ('premium', 'Premium', 'Premium service agreement with additional benefits'),
+        ('custom', 'Custom', 'Custom tailored service agreement'),
+        ('maintenance', 'Maintenance', 'System maintenance agreement'),
+        ('support', 'Support', 'Technical support agreement'),
+        ('hosting', 'Hosting', 'Web hosting service agreement')");
+    
     // Settings table
     $conn->query("CREATE TABLE IF NOT EXISTS settings (
         id INT(11) AUTO_INCREMENT PRIMARY KEY,
