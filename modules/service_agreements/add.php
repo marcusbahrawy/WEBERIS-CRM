@@ -40,6 +40,15 @@ if ($businessesResult->num_rows > 0) {
     }
 }
 
+// Get agreement types for dropdown
+$agreementTypesResult = $conn->query("SELECT id, name, label FROM agreement_types WHERE is_active = 1 ORDER BY label ASC");
+$agreementTypes = [];
+if ($agreementTypesResult->num_rows > 0) {
+    while ($type = $agreementTypesResult->fetch_assoc()) {
+        $agreementTypes[] = $type;
+    }
+}
+
 // Handle form submission
 $error = '';
 $success = '';
@@ -167,13 +176,18 @@ include '../../includes/header.php';
                     <div class="form-group">
                         <label for="agreement_type">Agreement Type <span class="required">*</span></label>
                         <select id="agreement_type" name="agreement_type" class="form-control" required>
-                            <option value="standard" selected>Standard</option>
-                            <option value="premium">Premium</option>
-                            <option value="custom">Custom</option>
-                            <option value="maintenance">Maintenance</option>
-                            <option value="support">Support</option>
-                            <option value="hosting">Hosting</option>
+                            <?php foreach ($agreementTypes as $type): ?>
+                                <option value="<?php echo $type['name']; ?>"><?php echo $type['label']; ?></option>
+                            <?php endforeach; ?>
+                            <?php if (empty($agreementTypes)): ?>
+                                <option value="standard">Standard</option>
+                            <?php endif; ?>
                         </select>
+                        <?php if (checkPermission('edit_service_agreement')): ?>
+                            <a href="../agreement_types/index.php" class="btn btn-text mt-sm" style="display: inline-block;">
+                                <span class="material-icons">settings</span> Manage Agreement Types
+                            </a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

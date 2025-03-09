@@ -39,6 +39,16 @@ if ($result->num_rows === 0) {
 
 $agreement = $result->fetch_assoc();
 
+// Get agreement type label
+$agreementTypeLabel = ucfirst(str_replace('_', ' ', $agreement['agreement_type']));
+$stmt = $conn->prepare("SELECT label FROM agreement_types WHERE name = ?");
+$stmt->bind_param('s', $agreement['agreement_type']);
+$stmt->execute();
+$typeResult = $stmt->get_result();
+if ($typeResult->num_rows > 0) {
+    $agreementTypeLabel = $typeResult->fetch_assoc()['label'];
+}
+
 // Calculate next invoice date and status information
 $today = new DateTime();
 $startDate = new DateTime($agreement['start_date']);
@@ -170,7 +180,7 @@ if (isset($_GET['success'])) {
                     <div class="info-content">
                         <div class="info-row">
                             <div class="info-label">Agreement Type:</div>
-                            <div class="info-value"><?php echo ucfirst(str_replace('_', ' ', $agreement['agreement_type'])); ?></div>
+                            <div class="info-value"><?php echo $agreementTypeLabel; ?></div>
                         </div>
                         <div class="info-row">
                             <div class="info-label">Price:</div>
@@ -237,7 +247,7 @@ if (isset($_GET['success'])) {
                 
                 <div class="detail-item">
                     <div class="detail-label">Agreement Type</div>
-                    <div class="detail-value"><?php echo ucfirst(str_replace('_', ' ', $agreement['agreement_type'])); ?></div>
+                    <div class="detail-value"><?php echo $agreementTypeLabel; ?></div>
                 </div>
                 
                 <div class="detail-item">

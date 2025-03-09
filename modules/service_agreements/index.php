@@ -36,6 +36,15 @@ if ($businessId) {
     }
 }
 
+// Create a map of agreement types for display
+$agreementTypesMap = [];
+$agreementTypesResult = $conn->query("SELECT name, label FROM agreement_types");
+if ($agreementTypesResult->num_rows > 0) {
+    while ($type = $agreementTypesResult->fetch_assoc()) {
+        $agreementTypesMap[$type['name']] = $type['label'];
+    }
+}
+
 // Search query
 $search = isset($_GET['search']) ? sanitizeInput($_GET['search']) : '';
 
@@ -153,6 +162,11 @@ include '../../includes/header.php';
                     <?php endif; ?>
                 </div>
             </form>
+            <?php if (checkPermission('edit_service_agreement')): ?>
+                <a href="../agreement_types/index.php" class="btn btn-text">
+                    <span class="material-icons">settings</span> Manage Types
+                </a>
+            <?php endif; ?>
         </div>
     </div>
     
@@ -214,7 +228,7 @@ include '../../includes/header.php';
                                         <?php echo ucfirst(str_replace('_', ' ', $row['status'])); ?>
                                     </span>
                                 </td>
-                                <td><?php echo ucfirst(str_replace('_', ' ', $row['agreement_type'])); ?></td>
+                                <td><?php echo isset($agreementTypesMap[$row['agreement_type']]) ? $agreementTypesMap[$row['agreement_type']] : ucfirst(str_replace('_', ' ', $row['agreement_type'])); ?></td>
                                 <td><?php echo date('M j, Y', strtotime($row['start_date'])); ?></td>
                                 <td><?php echo $row['end_date'] ? date('M j, Y', strtotime($row['end_date'])) : 'Ongoing'; ?></td>
                                 <td>
@@ -235,7 +249,7 @@ include '../../includes/header.php';
                                         N/A
                                     <?php endif; ?>
                                 </td>
-                                <td><?php echo '' . formatCurrency($row['price']); ?> / <?php echo $row['billing_cycle']; ?></td>
+                                <td><?php echo '' . formatCurrency($row['price']); ?> / <?php echo ucfirst($row['billing_cycle']); ?></td>
                                 <td class="actions-cell">
                                     <a href="view.php?id=<?php echo $row['id']; ?>" class="btn btn-icon btn-text" title="View Details">
                                         <span class="material-icons">visibility</span>
